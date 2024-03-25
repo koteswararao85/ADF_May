@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "marchadffactory"
+		},
+		"sourceLS_accountKey": {
+			"value": ""
+		},
+		"targetLS_accountKey": {
+			"value": ""
+		},
+		"sourceLS_properties_typeProperties_url": {
+			"value": "https://datalakesourcemarch.dfs.core.windows.net/"
+		},
+		"targetLS_properties_typeProperties_url": {
+			"value": "https://datalaketargetmarch.dfs.core.windows.net/"
+		}
+	}
+}
