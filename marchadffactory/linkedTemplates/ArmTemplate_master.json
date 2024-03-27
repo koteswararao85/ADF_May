@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'sourceLS'"
 		},
+		"sqldbLS_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'sqldbLS'"
+		},
 		"targetLS_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'targetLS'"
@@ -52,6 +56,9 @@
 					},
 					"sourceLS_accountKey": {
 						"value": "[parameters('sourceLS_accountKey')]"
+					},
+					"sqldbLS_connectionString": {
+						"value": "[parameters('sqldbLS_connectionString')]"
 					},
 					"targetLS_accountKey": {
 						"value": "[parameters('targetLS_accountKey')]"

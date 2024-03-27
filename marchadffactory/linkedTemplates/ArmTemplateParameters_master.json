@@ -8,6 +8,9 @@
 		"sourceLS_accountKey": {
 			"value": ""
 		},
+		"sqldbLS_connectionString": {
+			"value": ""
+		},
 		"targetLS_accountKey": {
 			"value": ""
 		},
