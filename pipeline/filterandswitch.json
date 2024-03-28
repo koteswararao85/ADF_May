@@ -1,0 +1,62 @@
+{
+	"name": "filterandswitch",
+	"properties": {
+		"activities": [
+			{
+				"name": "Filter1",
+				"type": "Filter",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.inputtablename",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@contains(pipeline().parameters.inputtablename,'test')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Filter1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "pipelineReturnValue",
+					"value": [
+						{
+							"key": "field",
+							"value": {
+								"type": "String"
+							}
+						}
+					],
+					"setSystemVariable": true
+				}
+			}
+		],
+		"parameters": {
+			"inputtablename": {
+				"type": "array",
+				"defaultValue": [
+					"emp",
+					"dept"
+				]
+			}
+		},
+		"annotations": []
+	}
+}
