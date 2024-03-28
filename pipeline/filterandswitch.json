@@ -5,6 +5,8 @@
 			{
 				"name": "Filter1",
 				"type": "Filter",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
@@ -13,7 +15,7 @@
 						"type": "Expression"
 					},
 					"condition": {
-						"value": "@contains(pipeline().parameters.inputtablename,'test')",
+						"value": "@contains(item(),'emp')",
 						"type": "Expression"
 					}
 				}
@@ -21,6 +23,8 @@
 			{
 				"name": "Set variable1",
 				"type": "SetVariable",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Filter1",
@@ -36,15 +40,23 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "pipelineReturnValue",
-					"value": [
-						{
-							"key": "field",
-							"value": {
-								"type": "String"
-							}
-						}
-					],
 					"setSystemVariable": true
+				}
+			},
+			{
+				"name": "Filter2",
+				"type": "Filter",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('source')",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@greater(item(),25 )",
+						"type": "Expression"
+					}
 				}
 			}
 		],
@@ -54,6 +66,16 @@
 				"defaultValue": [
 					"emp",
 					"dept"
+				]
+			}
+		},
+		"variables": {
+			"source": {
+				"type": "Array",
+				"defaultValue": [
+					23,
+					30,
+					35
 				]
 			}
 		},
