@@ -1,0 +1,27 @@
+{
+	"name": "functionsvalidation",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": []
+			}
+		],
+		"parameters": {
+			"input": {
+				"type": "array",
+				"defaultValue": "[\"a1\",\"b1\",\"c1\",\"c1\",\"a1\""
+			},
+			"output": {
+				"type": "array"
+			}
+		},
+		"annotations": []
+	}
+}
