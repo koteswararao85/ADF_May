@@ -24,6 +24,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -62,7 +63,7 @@
 							"typeProperties": {
 								"variableName": "filename",
 								"value": {
-									"value": "@concat('https://datalakesourcemarch.dfs.core.windows.net/source /sql/',item().name)",
+									"value": "@concat('https://datalakesourcemarch.dfs.core.windows.net/source/sql/',item().name)",
 									"type": "Expression"
 								}
 							}
@@ -89,7 +90,7 @@
 							"typeProperties": {
 								"method": "GET",
 								"headers": {
-									"x-ms-version": "2017-11-09",
+									"x-ms-version": "2023-11-03",
 									"x-ms-blob-type": "Blockbob"
 								},
 								"url": {
