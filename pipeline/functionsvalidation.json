@@ -10,7 +10,11 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "test",
+					"value": "test"
+				}
 			}
 		],
 		"parameters": {
@@ -20,6 +24,11 @@
 			},
 			"output": {
 				"type": "array"
+			}
+		},
+		"variables": {
+			"test": {
+				"type": "String"
 			}
 		},
 		"annotations": []
