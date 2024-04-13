@@ -20,7 +20,13 @@
 		"parameters": {
 			"input": {
 				"type": "array",
-				"defaultValue": "[\"a1\",\"b1\",\"c1\",\"c1\",\"a1\""
+				"defaultValue": [
+					"a1",
+					"b1",
+					"c1",
+					"c1",
+					"a1"
+				]
 			},
 			"output": {
 				"type": "array"
