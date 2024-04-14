@@ -5,6 +5,11 @@
 			"referenceName": "targetLS",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"targetFilename": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
