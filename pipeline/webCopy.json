@@ -1,0 +1,64 @@
+{
+	"name": "webCopy",
+	"properties": {
+		"activities": [
+			{
+				"name": "Web1",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "GET",
+					"url": {
+						"value": "@pipeline().parameters.urlValue",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Web2",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Web1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "PUT",
+					"headers": {
+						"x-ms-blob-type": "BlockBlob"
+					},
+					"url": "https://datalaketargetmarch.blob.core.windows.net/weboutput/weboutput.json?sp=racwdlmeop&st=2024-05-25T23:14:24Z&se=2024-06-30T07:14:24Z&sv=2022-11-02&sr=c&sig=t2PNtya5j7YOEelsRH4RXHxgfBExZBx%2FZMjMeNGVCN8%3D",
+					"body": {
+						"value": "@activity('Web1').output",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"urlValue": {
+				"type": "string"
+			}
+		},
+		"annotations": []
+	}
+}

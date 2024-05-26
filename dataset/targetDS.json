@@ -2,7 +2,7 @@
 	"name": "targetDS",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "targetLS",
+			"referenceName": "webtarget2",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
@@ -15,7 +15,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileSystem": "target"
+				"fileSystem": "weboutput"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
