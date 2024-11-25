@@ -18,3 +18,27 @@ org.apache.avro_avro                    | 1.11.3        | fixed in 1.11.4  | 50 
 				</exclusion>
 			</exclusions>
 		</dependency>
+
+
+ ConsumerPulsarTest.testPulsarConsumerConnection:212 » NoClassDefFound org/apache/pulsar/client/api/PulsarClientException$FeatureNotSupportedException
+[INFO] 
+
+<dependency>
+			<groupId>org.apache.pulsar</groupId>
+			<artifactId>pulsar-client</artifactId>
+			<version>3.3.2</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.validation</groupId>
+					<artifactId>validation-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.commons</groupId>
+					<artifactId>commons-compress</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.avro</groupId>
+					<artifactId>avro</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
