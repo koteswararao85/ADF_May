@@ -256,3 +256,24 @@ org.apache.avro_avro                    | 1.11.3        | fixed in 1.11.4  | 50 
 
 </project>
 
+
+
+2024-12-02T00:16:03.2543899Z # A fatal error has been detected by the Java Runtime Environment:
+2024-12-02T00:16:03.2544015Z #
+2024-12-02T00:16:03.2544115Z # SIGSEGV (0xb) at pc=0x0000000000020506, pid=1, tid=74
+2024-12-02T00:16:03.2544178Z #
+2024-12-02T00:16:03.2544249Z # JRE version: OpenJDK Runtime Environment Temurin-17.0.13+11 (17.0.13+11) (build 17.0.13+11)
+2024-12-02T00:16:03.2544411Z # Java VM: OpenJDK 64-Bit Server VM Temurin-17.0.13+11 (17.0.13+11, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, linux-amd64)
+2024-12-02T00:16:03.2544519Z # Problematic frame:
+2024-12-02T00:16:03.2592538Z # C [liborg_apache_pulsar_shade_netty_tcnative_linux_x86_648221081538193164606.so+0x2b814] netty_internal_tcnative_SSLContext_JNI_OnLoad+0xa24
+2024-12-02T00:16:03.2593073Z #
+2024-12-02T00:16:03.2593211Z # Core dump will be written. Default location: Core dumps may be processed with "/usr/lib/systemd/systemd-coredump %P %u %g %s %t %c %h" (or dumping to /app/core.1)
+2024-12-02T00:16:03.2593302Z #
+2024-12-02T00:16:03.2593369Z # An error report file with more information is saved as:
+2024-12-02T00:16:03.2593459Z # /app/hs_err_pid1.log
+2024-12-02T00:16:03.3492162Z #
+2024-12-02T00:16:03.3492967Z # If you would like to submit a bug report, please visit:
+2024-12-02T00:16:03.3493078Z # https://github.com/adoptium/adoptium-support/issues
+2024-12-02T00:16:03.3493144Z # The crash happened outside the Java Virtual Machine in native code.
+2024-12-02T00:16:03.3493203Z # See problematic frame for where to report the bug.
+2024-12-02T00:16:03.3493277Z #
