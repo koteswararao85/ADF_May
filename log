@@ -1,0 +1,10 @@
+logging:
+  config: 'classpath:logback-spring.xml'
+  file: ${server_log_file:/opt/wagapp/logs/app.log}
+  level:
+    root: ${root_log_level:WARN}
+    com.test: ${microservice_log_level:TRACE}
+    org:
+      apache: ERROR
+      springframework: INFO
+      springframework.integration.expression.ExpressionUtils: ERROR
