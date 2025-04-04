@@ -1,70 +1,163 @@
-[ERROR] Error while parsing schema(s).Location [ file:/C:/Users/kpuchagk/workspace/pltformupgrade/release/drugmdm-loadarticleupdate/schema/src/main/resources/schema/xsd/ArticleUpdate.xsd{5,62}].
+
+
+[ERROR] Error while parsing schema(s).Location [ file:/C:/Users/kpuchagk/workspace/pltformupgrade/release/drugmdm-loadarticlemaster/target/dependency/schema/xsd/ArticleMaster.xsd{4,66}].
 org.xml.sax.SAXParseException: Unsupported binding namespace "http://annox.dev.java.net". Perhaps you meant "http://java.sun.com/xml/ns/jaxb/xjc"?
 
 
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<parent>
 		<groupId>com.walgreens.pharmacy.starter</groupId>
 		<artifactId>rxp-spring-boot-starters-bom</artifactId>
 		<version>2.0.4-RELEASE</version>
 	</parent>
 
+	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.walgreens.pharmacy</groupId>
-	<artifactId>drugmdm-loadarticleupdate-parent</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
-	<packaging>pom</packaging>
-	<name>Drug MDM - Load Article Update - ${project.version}</name>
-	<description>Minion to consume Kafka event stream (IntegrationSAPArticleUpdateRequest) provided by Minions (product-loadproduct, product-loadpag) and read data from cassandra database to produce SAP article updates. Uses: drugmdm-product-data, drugmdm-pag-data</description>
-
+	<version>11.0.0-SNAPSHOT</version>
+	<artifactId>drugmdm-loadarticlemaster-parent</artifactId>
+	<name>Drug MDM - Load Article Master Integration</name>
+	<description>Minion to consume Article Master stream provided by SAP through UM and load data into Drug MDM through UM Queue.</description>
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>17</java.version>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
 	</properties>
-	<modules>
-		<module>gateway</module>
-		<module>schema</module>
-	</modules>
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>io.fabric8</groupId>
-				<artifactId>kubernetes-client</artifactId>
-				<version>6.7.2</version>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-
 	<dependencies>
 		<dependency>
-			<groupId>io.fabric8</groupId>
-			<artifactId>kubernetes-model</artifactId>
-			<version>6.7.2</version>
+			<groupId>com.walgreens.pharmacy.starter</groupId>
+			<artifactId>simple-stateless-integration-starter</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>io.fabric8</groupId>
-			<artifactId>kubernetes-model-common</artifactId>
-			<version>6.7.2</version>
+			<groupId>com.walgreens.pharmacy.starter</groupId>
+			<artifactId>xml-integration-starter</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>io.fabric8</groupId>
-			<artifactId>kubernetes-model-core</artifactId>
-			<version>6.7.2</version>
+			<groupId>com.walgreens.pharmacy.starter</groupId>
+			<artifactId>jms-integration-starter</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.microsoft.azure</groupId>
+			<artifactId>msal4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.wba.libraries.sag</groupId>
+			<artifactId>nClient</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.wba.libraries.sag</groupId>
+			<artifactId>nJMS</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.platformx</groupId>
+			<artifactId>jpa-library</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-mockito2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.platformx</groupId>
+			<artifactId>jpa-spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.walgreens.pharmacy.contract</groupId>
+			<artifactId>prd-client-drugmdm-articlemaster</artifactId>
+			<version>0.1.0-RELEASE</version>
+		</dependency>
+	<!--	<dependency>
+			<groupId>com.platformx</groupId>
+			<artifactId>azure-applicationinsights-library</artifactId>
+		</dependency>-->
 	</dependencies>
+	
 	<build>
+		<finalName>drugmdm-loadarticlemaster</finalName>
+		<defaultGoal>spring-boot:run</defaultGoal>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<skipAssembly>true</skipAssembly>
-				</configuration>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>initialize</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>com.walgreens.pharmacy.contract</groupId>
+									<artifactId>prd-client-drugmdm-articlemaster</artifactId>
+									<version>0.1.0-RELEASE</version>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>articlemaster</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemas>
+								<schema>
+									<fileset>
+										<directory>${dependency-unpack-dir}/schema/xsd</directory>
+										<includes>
+											<include>*.xsd</include>
+										</includes>
+									</fileset>
+								</schema>
+							</schemas>
+							<generateDirectory>${generated-sources-dir}/xjc-articlemaster/src/gen/java</generateDirectory>
+							<bindingDirectory>${dependency-unpack-dir}/schema/xjb</bindingDirectory>
+							<bindingIncludes>
+								<include>ArticleMaster.xjb</include>
+							</bindingIncludes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>add-xjc-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${project.basedir}/target/xjc-articlemaster/src/gen/java</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
