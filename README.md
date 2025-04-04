@@ -69,6 +69,26 @@
 		<artifactId>jaxb2-basics</artifactId>
 		<version>1.11.1</version>
 	</dependency>
+	<dependency>
+		<groupId>jakarta.xml.bind</groupId>
+		<artifactId>jakarta.xml.bind-api</artifactId>
+		<version>4.0.0</version>
+	</dependency>
+	<dependency>
+		<groupId>com.sun.xml.bind</groupId>
+		<artifactId>jaxb-impl</artifactId>
+		<version>4.0.0</version>
+	</dependency>
+	<dependency>
+		<groupId>org.glassfish.jaxb</groupId>
+		<artifactId>jaxb-runtime</artifactId>
+		<version>4.0.0</version>
+	</dependency>
+	<dependency>
+		<groupId>jakarta.annotation</groupId>
+		<artifactId>jakarta.annotation-api</artifactId>
+		<version>2.1.1</version>
+	</dependency>
 <!--	<dependency>
 		<groupId>com.platformx</groupId>
 		<artifactId>azure-applicationinsights-library</artifactId>
@@ -130,7 +150,7 @@
 						<args>
 							<arg>-Xnamespace-prefix</arg>
 							<arg>-Xannotate</arg>
-							<arg>-Xnamespace-prefix</arg>
+							<arg>-jakarta</arg>
 						</args>
 						<plugins>
 							<plugin>
@@ -143,11 +163,6 @@
 								<artifactId>jaxb2-basics-annotate</artifactId>
 								<version>1.1.0</version>
 							</plugin>
-							<plugin>
-								<groupId>org.jvnet.jaxb2_commons</groupId>
-								<artifactId>jaxb2-basics</artifactId>
-								<version>1.11.1</version>
-							</plugin>
 						</plugins>
 					</configuration>
 				</execution>
@@ -156,22 +171,17 @@
 				<dependency>
 					<groupId>org.glassfish.jaxb</groupId>
 					<artifactId>jaxb-xjc</artifactId>
-					<version>2.3.3</version>
+					<version>4.0.0</version>
 				</dependency>
 				<dependency>
 					<groupId>org.glassfish.jaxb</groupId>
 					<artifactId>jaxb-runtime</artifactId>
-					<version>2.3.3</version>
+					<version>4.0.0</version>
 				</dependency>
 				<dependency>
-					<groupId>org.jvnet.jaxb2_commons</groupId>
-					<artifactId>jaxb2-basics-annotate</artifactId>
-					<version>1.1.0</version>
-				</dependency>
-				<dependency>
-					<groupId>org.jvnet.jaxb2_commons</groupId>
-					<artifactId>jaxb2-basics</artifactId>
-					<version>1.11.1</version>
+					<groupId>jakarta.xml.bind</groupId>
+					<artifactId>jakarta.xml.bind-api</artifactId>
+					<version>4.0.0</version>
 				</dependency>
 			</dependencies>
 		</plugin>
